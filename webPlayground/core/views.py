@@ -1,7 +1,11 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import render
 
-def home(request):
-    return render(request, "core/home.html")
+class HomePageView(TemplateView):
+    template_name = "core/home.html"
 
-def sample(request):
-    return render(request, "core/sample.html")
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'title':'My Super Web Playground'})
+
+class SamplePageView(TemplateView):
+    template_name = "core/sample.html"
